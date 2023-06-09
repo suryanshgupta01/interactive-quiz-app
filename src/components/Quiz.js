@@ -4,33 +4,15 @@ import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { Button } from '@mui/material'
 // import { questions } from '../App'
 
-const Quiz = ({ Name, setName, questions, score, setscore }) => {
+const Quiz = ({ Name, setName, questions, loading, score, setscore }) => {
   const navigate = useNavigate()
-  // const first = localStorage.getItem("category")
-  // console.log(Name)
-  // const navigate = useNavigate()
-  // const abcd = localStorage.getItem("questions")
-  // console.log("Ques ", abcd)
-  // function refreshPage() {
-  //   window.location.reload(false);
-  // }
-  // useEffect(() => {
-  //   refreshPage()
-  // }, []);
-  // function sleep(milliseconds) {
-  //   const date = Date.now();
-  //   let currentDate = null;
-  //   do {
-  //     currentDate = Date.now();
-  //   } while (currentDate - date < milliseconds);
-  // }
+  // if (!questions) return (<><p>Loading..</p></>)
 
-  // sleep(2000);
   console.log("Q", questions, Name)
   const len = questions.length;
-  const [last, setlast] = useState(false);
+  // const [last, setlast] = useState(false);
   const [questioncount, setquestioncount] = useState(0);
-  if (questioncount === len && len != 0) {
+  if (questioncount === len && len !== 0) {
     navigate('/result')
     return
   }
@@ -53,10 +35,8 @@ const Quiz = ({ Name, setName, questions, score, setscore }) => {
   const submitanswer = (index) => {
     if (options[index] === questions[questioncount].correct_answer) {
       // score++;
-      localStorage.setItem("SCORE", score)
+      // localStorage.setItem("SCORE", score)
       setscore(score + 1)
-
-
     }
     else {
       const clickedclass = "class" + index.toString()
@@ -64,7 +44,7 @@ const Quiz = ({ Name, setName, questions, score, setscore }) => {
     }
     const correctclass = "class" + random.toString()
     document.getElementsByClassName(correctclass)[0].style.backgroundColor = "#03C04A"
-    console.log(score)
+    // console.log(score)
   }
   return (
 

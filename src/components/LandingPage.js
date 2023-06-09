@@ -11,11 +11,9 @@ import Stack from '@mui/material/Stack';
 import Button from '@mui/material/Button';
 import { useNavigate } from 'react-router'
 
-let Array1 = [3, 5, 2, 2, 1]
-const LandingPage = ({ Name, setName, Fetchquestions }) => {
+const LandingPage = ({ Name, setName, getques,loading,setloading }) => {
 
-    var arr = new Array(4)
-    for (let i of arr) console.log(i)
+  
     // const [name, setName] = useState("");
     // const [Name, setName] = useState("");
     // const [Questions, setQuestions] = useState([]);
@@ -24,6 +22,27 @@ const LandingPage = ({ Name, setName, Fetchquestions }) => {
     const [category1, setcategory1] = useState("");
     const [difficulty1, setdifficulty1] = useState("");
     const [number, setnumber] = useState(10);
+    const Fetchquestions = async (number, category, difficulty) => {
+        // console.log("fhag", number, category, difficulty)
+        try {
+            await fetch(
+                `https://opentdb.com/api.php?amount=${number}&category=${category}&difficulty=${difficulty}`
+            )
+                .then((res) => res.json())
+                .then((data) => {
+                    console.log('FETCH',data.results);
+                    getques(data.results);
+                    setloading(false)
+                })
+            // console.log(response);
+            // const data = await response.json();
+            // console.log(data.results);
+            // questions = (data.results);
+            // localStorage.setItem("questions", data.results)
+        } catch (error) {
+            console.log(error);
+        }
+    }
 
     const navigate = useNavigate()
     // const history = useHistory();
@@ -60,24 +79,6 @@ const LandingPage = ({ Name, setName, Fetchquestions }) => {
         }
     };
 
-    // const handleClick = () => {
-    //     // e.preventDefault()
-    //     navigate('/quiz');
-    //     Fetchquestions(number, category1, difficulty1)
-
-    // setName("")
-    //i simply could have set data in local storage and access where ever you want
-    //but here i didnot do this
-    //and went with react way of passing attributes
-
-    // localStorage.setItem("name", name)
-    // localStorage.setItem("category", category1)
-    // localStorage.setItem("difficulty", difficulty1)
-    // localStorage.setItem("number", number)
-
-
-
-    // }
 
     return (
         <div className='landingpage'>
@@ -97,17 +98,7 @@ const LandingPage = ({ Name, setName, Fetchquestions }) => {
                             type="search"
                         />
 
-                        {/* <TextField className='input' id="outlined-search" label="Enter category" type="search" /> */}
-                        {/* <TextField fullWidth label="fullWidth" id="fullWidth" /> */}
-                        {/* <label htmlFor="name">Name:</label><br />
-                <input type="text" className='input' id="name" name="name" onChange={(e) => setName(e.target.value)} /><br /> */}
-                        {/* <label htmlFor="subject">Subject</label><br />
-                <select className='input' id="subject" name="subject">
-                
-                {categories.map((subject) => (
-                    <option key={subject.value} value={subject.value}>{subject.category}</option>
-                    ))}
-                </select><br /> */}
+                     
                         <TextField
                             id="outlined-select-currency"
                             select style={{ marginBottom: 25 }}
