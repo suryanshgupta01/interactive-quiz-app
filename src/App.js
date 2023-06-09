@@ -34,12 +34,12 @@ function App() {
   // };
 
 
-  const Fetchquestions =  (number, category, difficulty) => {
-    console.log("fhag", number, category, difficulty)
+  const Fetchquestions = (number, category, difficulty) => {
+    // console.log("fhag", number, category, difficulty)
     try {
-        fetch(
+      fetch(
         `https://opentdb.com/api.php?amount=${number}&category=${category}&difficulty=${difficulty}`
-      ).then((res) => res.json()).then((data) =>{
+      ).then((res) => res.json()).then((data) => {
         console.log(data.results);
         questions = (data.results);
       })
@@ -88,7 +88,7 @@ function App() {
             setName={setName}
             Fetchquestions={Fetchquestions}
           />} />
-          
+
           <Route path="/quiz" element={<Quiz
             Name={Name}
             setName={setName}
@@ -97,9 +97,9 @@ function App() {
             score={score}
             setscore={setscore}
           />} />
-          <Route path="/result" element={<Result 
-          score={score}
-          setscore={setscore}
+          <Route path="/result" element={<Result
+            score={score}
+            setscore={setscore}
           />} />
           <Route path="*" element={<Notfound />} />
 
