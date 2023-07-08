@@ -80,8 +80,12 @@ code {
 }
 
 .solo {
-  padding: 2rem;
-  background-color: rgb(147, 139, 139);
+  padding: 1rem;
+  background-color: #efefef;
+}
+
+.clicked {
+  pointer-events: none;
 }
 
 .result {
@@ -121,7 +125,8 @@ code {
   /* background-color: red; */
   margin-right: auto;
   font-size: 1.5rem;
-  margin-top: 2rem;
+  margin-top: 1rem;
+  margin-bottom: 0.5rem;
   margin-left: auto;
 }
 
@@ -138,24 +143,28 @@ code {
   flex-direction: row;
   font-size: 1.5rem;
   font-weight: 500;
+  /* margin-top: 1rem; */
   text-transform: uppercase;
-  justify-content: space-around;
+  justify-content: space-between;
+  margin-left: 1rem;
+  margin-right: 1rem;
 }
 
 .greet {
   border: 2px solid #000000;
   box-shadow: 2px 2px 3px black;
+  font-weight: 500;
   padding: 1rem;
+  font-size: 2rem;
   margin-right: auto;
-  font-weight: 400;
   margin-left: auto;
-  width: 10%;
+  /* font-weight: 400; */
+  width: fit-content;
 }
 
 .box {
   border: 3px solid rgb(78, 77, 77);
   text-align: center;
-
   margin-right: 3%;
   margin-left: 3%;
 }
@@ -168,39 +177,37 @@ code {
   color: rgb(178, 170, 170);
   font-weight: 600;
   font-size: 2rem;
-  /* border: 2px solid yellow; */
-
+  margin: 1rem;
 }
 
 .input,
 .start {
 
-  display: block;
+  /* display: block; */
   width: 90%;
+  margin-left: auto;
+  margin-right: auto;
   /* margin: 20px; */
   padding: 0.5rem;
   color: white;
   border: 2px solid magenta;
 }
 
-form>button {
-  background-color: rgb(83, 83, 241);
-}
 
 .form {
   display: flex;
+  flex-direction: column;
   text-align: center;
+  /* justify-content: start; */
+  align-items: center;
   width: 35%;
   font-weight: 600;
-  backdrop-filter: blur(9px);
-  flex-direction: column;
-  justify-content: space-evenly;
-  /* align-items: center; */
-  /* height: 100%; */
+  /* justify-content: space-around; */
   border: 3px solid rgb(90, 93, 90);
   border-radius: 20px;
-  /* background-color: rgba(0, 0, 0, 0.3); */
 }
+
+.form>TextField {}
 
 .options {
   /* display: block; */
@@ -208,5 +215,52 @@ form>button {
   text-align: left;
   font-weight: 600;
   /* margin: 20px; */
+}
 
+@media (width<500px) {
+  .form_image {
+    flex-direction: column;
+    width: 100%;
+  }
+
+  .quizimage {
+    width: 100%;
+    /* display: none; */
+  }
+
+  .greet {
+    font-size: 1.5rem;
+    padding: 0.5rem;
+  }
+
+  .Qscore,
+  .category {
+    font-size: 1rem;
+  }
+
+  .form {
+    width: 100%;
+  }
+
+  .quizname {
+    font-size: 2rem;
+  }
+
+  .question {
+    font-size: 1.3rem;
+  }
+
+  .Qoptions {
+    grid-template-columns: auto;
+    padding: 0.5rem;
+    margin-left: 0%;
+    margin-right: 0%;
+    column-gap: 0.3rem;
+    row-gap: 0.3rem;
+  }
+
+  .quizpage>span:nth-child(1) {
+    font-size: 3rem;
+    margin-bottom: 2rem;
+  }
 }
