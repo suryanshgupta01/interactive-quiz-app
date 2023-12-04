@@ -95,9 +95,9 @@ const LandingPage = () => {
                     <Button variant="contained" style={{ width: '90%'}} className="button" onClick={() => Fetchquestions(number, category1, difficulty1)}>
                         start quiz
                     </Button>
-                    <Button variant="contained" style={{ width: '90%' }} className="button" onClick={() => Fetchquestions(10, 19, "hard")}>
+                    {/* <Button variant="contained" style={{ width: '90%' }} className="button" onClick={() => Fetchquestions(10, 19, "hard")}>
                     set values
-                    </Button>
+                    </Button> */}
 
                 </div>
 
