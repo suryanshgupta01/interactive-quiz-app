@@ -43,10 +43,10 @@ const LandingPage = () => {
             <div className='form_image'>
                 <img src={logo} className='quizimage' alt="image here" />
                 <div className='form'>
-                    <p className='setting'>Quiz Setting</p><br />
+                    <div className='setting'>Quiz Setting</div>
                     {error && <ErrorMessage>{error}</ErrorMessage>}
                     <TextField className='input'
-                        style={{ marginTop: -20, marginBottom: 25 }}
+                        style={{ marginBottom: 25 }}
                         id="outlined-search"
                         label="Enter your name"
                         onChange={(e) => setName(e.target.value)}
@@ -92,8 +92,11 @@ const LandingPage = () => {
                         InputLabelProps={{
                             shrink: true,
                         }} />
-                    <Button variant="contained" style={{ width: '90%' }} className="button" onClick={() => Fetchquestions(number, category1, difficulty1)}>
+                    <Button variant="contained" style={{ width: '90%'}} className="button" onClick={() => Fetchquestions(number, category1, difficulty1)}>
                         start quiz
+                    </Button>
+                    <Button variant="contained" style={{ width: '90%' }} className="button" onClick={() => Fetchquestions(10, 19, "hard")}>
+                    set values
                     </Button>
 
                 </div>

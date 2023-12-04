@@ -6,13 +6,14 @@ import ErrorMessage from './ErrorMessage'
 
 const Quiz = () => {
   const { score, setscore, questions, Name } = useCustomContext()
-
+  const [isclicked, setisclicked] = useState(false);
+  // questions = questions.filter((ele) => ele.type === 'multiple')
   const len = questions.length;
+
   const [questioncount, setquestioncount] = useState(0);
   const [error, seterror] = useState("");
   let random1 = 0;
   let options1 = useMemo(() => {
-    // console.log(questioncount, len)
     if (questioncount >= len) { return []; }
     const incorrlen = questions[questioncount].incorrect_answers.length
     let array = new Array(1 + incorrlen);
@@ -23,31 +24,41 @@ const Quiz = () => {
       if (array[i] === undefined) {
         array[i] = questions[questioncount].incorrect_answers[j];
         j++;
+      } else {
+        console.log(i, 'correct')
       }
     }
+    // console.log(questioncount, array, incorrlen, questions[questioncount])
     return array;
   }, [questioncount]);
 
   // console.log(questions)
 
-  const alloptions = document.getElementsByClassName('Qoptions')[0]
   const submitanswer = (index) => {
+    setisclicked(true)
     if (options1[index] === questions[questioncount].correct_answer) {
       setscore(score + 1)
+
+      const correctclass = "class" + random1.toString()
+      document.getElementsByClassName(correctclass)[0].style.backgroundColor = "#03C04A"
     }
     else {
       // console.log(index)
       const clickedclass = "class" + index.toString()
       document.getElementsByClassName(clickedclass)[0].style.backgroundColor = "#D20414"
-    }
-    const correctclass = "class" + random1.toString()
-    document.getElementsByClassName(correctclass)[0].style.backgroundColor = "#03C04A"
 
-    if (alloptions) {
-      alloptions.classList.add('clicked')
-      seterror("")
+
+      const correctclass = "class" + random1.toString()
+      document.getElementsByClassName(correctclass)[0].style.backgroundColor = "#03C04A"
     }
+    console.log(random1)
+    console.log(alloptions)
+
   }
+  const alloptions = document.getElementsByClassName('Qoptions')[0]
+  if (isclicked)
+    alloptions.classList.add('clicked')
+
 
   if (questioncount >= len) {
     return <Navigate to='/result' />
@@ -75,20 +86,28 @@ const Quiz = () => {
           {/* <Button variant="contained" className='button' onClick={() => setquestioncount(questioncount - 1)} style={{ backgroundColor: "magenta" }}>
             Prev questoin</Button> */}
           <Button variant="contained" className='button' onClick={() => {
+
             if (alloptions) {
+              console.log(alloptions.classList)
               if (!alloptions.classList.contains('clicked')) {
                 console.log("contains clicked")
                 seterror("Please pick an option!")
                 return;
               }
+              setisclicked(false)
+              seterror("")
               alloptions.classList.remove('clicked')
+            }
+            for (let i = 0; i < options1.length; i++) {
+              const clickedclass = "class" + i.toString()
+              document.getElementsByClassName(clickedclass)[0].style.backgroundColor = "#efefef"
             }
             setquestioncount(questioncount + 1);
           }} style={{ backgroundColor: "green" }}>
             {(questioncount + 1) === len ? 'End Test' : 'Next question'}</Button>
         </div>
       </div>
-    </div>
+    </div >
   )
 }
 

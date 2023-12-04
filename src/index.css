@@ -81,6 +81,7 @@ code {
 
 .solo {
   padding: 1rem;
+  cursor: pointer;
   background-color: #efefef;
 }
 
@@ -201,6 +202,8 @@ code {
   /* justify-content: start; */
   align-items: center;
   width: 35%;
+  
+  padding-bottom:1.5rem;
   font-weight: 600;
   /* justify-content: space-around; */
   border: 3px solid rgb(90, 93, 90);
