@@ -24,8 +24,6 @@ const Quiz = () => {
       if (array[i] === undefined) {
         array[i] = questions[questioncount].incorrect_answers[j];
         j++;
-      } else {
-        console.log(i, 'correct')
       }
     }
     // console.log(questioncount, array, incorrlen, questions[questioncount])
@@ -51,15 +49,10 @@ const Quiz = () => {
       const correctclass = "class" + random1.toString()
       document.getElementsByClassName(correctclass)[0].style.backgroundColor = "#03C04A"
     }
-    console.log(random1)
-    console.log(alloptions)
-
   }
   const alloptions = document.getElementsByClassName('Qoptions')[0]
   if (isclicked)
     alloptions.classList.add('clicked')
-
-
   if (questioncount >= len) {
     return <Navigate to='/result' />
   }
@@ -67,18 +60,26 @@ const Quiz = () => {
   return (
 
     <div className='quizpage'>
-      <span>Quiz test</span>
+      <span>Quiz test</span><hr style={{
+        color: 'gray',
+        backgroundColor: 'gray',
+        height: 2,
+        width: '95%'
+      }} />
+      {/* <div
+        dangerouslySetInnerHTML={{ __html: questions[questioncount].question }}
+      /> */}
       <section className='greet'>Welcome,{Name}</section>
       <div className='three'>
-        <section className='category'>Category:<br />{questions[questioncount].category}</section>
-        <section className='Qscore'>Score:{score}</section>
+        <section className='category'>Category: {questions[questioncount].category}</section>
+        <section className='Qscore'>Score: {score}</section>
       </div>
       <span className='noofques'>Question {questioncount + 1} of {len}</span>
       <div className='box'>
-        <div className='question'>Ques:-{questions[questioncount].question}</div>
+        <div className='question' dangerouslySetInnerHTML={{ __html: questions[questioncount].question }}></div>
         {error && <ErrorMessage>{error}</ErrorMessage>}
 
-        <div className='Qoptions'>{options1.map((ele, index) => <div key={ele} onClick={() => submitanswer(index)} className={`solo class${index}`}  >{ele}</div>)}</div>
+        <div className='Qoptions'>{options1.map((ele, index) => <div key={ele} onClick={() => submitanswer(index)} className={`solo class${index}`} dangerouslySetInnerHTML={{ __html: ele }} ></div>)}</div>
         <div className='allbuttons'>
 
           <Button variant="contained" className='button'>
@@ -88,9 +89,7 @@ const Quiz = () => {
           <Button variant="contained" className='button' onClick={() => {
 
             if (alloptions) {
-              console.log(alloptions.classList)
               if (!alloptions.classList.contains('clicked')) {
-                console.log("contains clicked")
                 seterror("Please pick an option!")
                 return;
               }

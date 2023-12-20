@@ -114,6 +114,7 @@ code {
   display: flex;
   flex-direction: column;
   justify-content: center;
+  color: rgb(80, 76, 76);
 }
 
 .question {
@@ -157,6 +158,7 @@ code {
   font-weight: 500;
   padding: 1rem;
   font-size: 2rem;
+  margin: 0.5rem;
   margin-right: auto;
   margin-left: auto;
   /* font-weight: 400; */
@@ -168,10 +170,6 @@ code {
   text-align: center;
   margin-right: 3%;
   margin-left: 3%;
-}
-
-.quizpage {
-  color: rgb(80, 76, 76);
 }
 
 .setting {
@@ -209,8 +207,6 @@ code {
   border: 3px solid rgb(90, 93, 90);
   border-radius: 20px;
 }
-
-.form>TextField {}
 
 .options {
   /* display: block; */
@@ -262,8 +258,4 @@ code {
     row-gap: 0.3rem;
   }
 
-  .quizpage>span:nth-child(1) {
-    font-size: 3rem;
-    margin-bottom: 2rem;
-  }
 }
